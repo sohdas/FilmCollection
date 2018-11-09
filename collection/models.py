@@ -7,7 +7,7 @@ class Shelf(models.Model):
         return self.shelf_name
 
 class Movie(models.Model):
-    shelf = models.ForeignKey(Shelf, on_delete = models.CASCASE)
+    shelf = models.ForeignKey(Shelf, on_delete = models.CASCADE)
     movie_name = models.CharField(max_length = 100)
     movie_genre = models.CharField(max_length = 100)
     release_year = models.PositiveIntegerField(max_length = 4, default = 2018)

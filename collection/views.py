@@ -11,7 +11,7 @@ class IndexView(generic.ListView):
     
     def get_queryset(self):
         """Return 10 shelves in alphabetical order"""
-        ## TODO: fix this
+        ## TODO: fix this thing
         # return Shelf.objects.order_by('shelf_name')[:10]
 
 
@@ -19,4 +19,3 @@ class DetailView(generic.DetailView):
     model = Shelf
     template_name='collection/detail.html'
     context_object_name=''
-    ## TODO: add template

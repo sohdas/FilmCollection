@@ -1,0 +1,12 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'collection/style.css' %}">
+{% if shelf_list %}
+    <ul>
+    {% for question in shelf_list %}
+        <li><a href="{% url 'collection:detail' shelf.id %}">{{ shelf.shelf_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No collections are available.</p>
+{% endif %}
