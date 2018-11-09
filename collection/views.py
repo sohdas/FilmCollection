@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return 10 shelves in alphabetical order"""
         ## TODO: fix this thing
-        # return Shelf.objects.order_by('shelf_name')[:10]
+        return Shelf.objects.order_by('shelf_name')[:10]
 
 
 class DetailView(generic.DetailView):
