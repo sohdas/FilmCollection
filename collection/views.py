@@ -18,5 +18,20 @@ class DetailView(generic.DetailView):
     model = Shelf
     template_name='collection/detail.html'
 
+class ResultsView(generic.DetailView):
+    model = Shelf
+    template_name=''
+
 def add_film(request, shelf_id):
-    
+    new_film = Movie()
+
+    new_film.movie_name = request.POST['title']
+    new_film.movie_genre = request.POST['genre']
+    new_film.release_year = request.POST['year']
+    new_film.movie_summary = request.POST['summary']
+
+    new_film.save()
+
+    return HttpResponseRedirect(reverse('collection:results', args=(shelf.id,)))
+
+        

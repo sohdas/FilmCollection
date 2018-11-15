@@ -1,12 +1,14 @@
 <h1>{{ shelf.shelf_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+{% for movie in shelf.shelf_list.all %}
+    <label for="movie{{ forloop.counter }}">{{ movie.movie_text }}</label><br>
+{% endfor %}
 <form action="{% url 'collection:add_film' shelf.id %}" method="post">
 {% csrf_token %}
-{% for movie in shelf.shelf_list.all %}
-    <input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
+<input type="text" name = "title" value = "Title">
+<input type="text" name = "genre" value = "Genre">
+<input type="number" maxlength = "4" name = "year" value = "2018">
+<input type="text" name = "summary" value = "Enter a summary">
 <input type="submit" value="Add Film">
-</form>
+</form>   
