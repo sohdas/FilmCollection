@@ -4,8 +4,17 @@ body{
     display: inline-block;
     background-color:#000123;
     color:whitesmoke;
+    font-family: 'Lato';
 }
 
 a:visited{
     color: lightgrey;
+}
+
+.title{
+    text-align:center;
+    font-family: 'Montserrat';
+    font-size: 26px;
+    letter-spacing: 3px;
+    font-weight: 350;
 }
