@@ -1,7 +1,10 @@
 {% load static %}
-
-<h1 class = "title">FILM COLLECTION</h1>
 <link rel="stylesheet" type="text/css" href="{% static 'collection/style.css' %}">
+
+<div class="title">
+    <p>FILM COLLECTION</p>
+</div>
+<div class="shelf_list">
 {% if shelf_list %}
     <ul>
     {% for shelf in shelf_list %}
@@ -11,3 +14,4 @@
 {% else %}
     <p>No collections are available.</p>
 {% endif %}
+</div>
