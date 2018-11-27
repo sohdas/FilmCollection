@@ -2,4 +2,10 @@ body{
     margin-left: 20%;
     margin-right: 20%;
     display: inline-block;
+    background-color:#000123;
+    color:whitesmoke;
+}
+
+a:visited{
+    color: lightgrey;
 }

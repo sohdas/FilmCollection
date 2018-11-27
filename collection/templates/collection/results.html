@@ -1,9 +1,15 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'collection/style.css' %}">
+
 <h1>{{ shelf.shelf_text }}</h1>
 
 <ul>
-{% for movie in shelf.movie_set.all %}
+    {% for movie in shelf.movie_set.all %}
     <label for="movie{{ forloop.counter }}">{{ movie.movie_text }}</label><br>
-{% endfor %}
+    {% endfor %}
 </ul>
 
 <a href="{% url 'collection:detail' shelf.id %}">Add Another Film</a>
+
+<a href="{% url 'collection:index' %}">Back to Index</a>
