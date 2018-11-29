@@ -23,14 +23,19 @@ class ResultsView(generic.DetailView):
     template_name='collection/results.html'
 
 def add_film(request, shelf_id):
+    current_shelf = get_object_or_404(Shelf, id=shelf_id)
     new_film = Movie()
 
     new_film.movie_name = request.POST['title']
     new_film.movie_genre = request.POST['genre']
     new_film.release_year = request.POST['year']
     new_film.movie_summary = request.POST['summary']
-    new_film.shelf = get_object_or_404(Shelf, id=shelf_id)
+    new_film.shelf = current_shelf
 
     new_film.save()
+
+    current_shelf.shelf_size += 1
+
+    current_shelf.save()
 
     return HttpResponseRedirect(reverse('collection:results', args=(shelf_id,)))

@@ -1,12 +1,39 @@
-body{
-    background-color:#000123;
+.color-white{
     color:whitesmoke;
-    font-family: 'Lato';
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 15px;
 }
 
+.color-navy{
+    color:#000123;
+}
+.body-font{
+    font-family: 'Lato';
+}
+.header-font{
+    font-family: 'Montserrat';
+    font-weight: 450;
+}
+
+/*Table Stuff*/
+
+.table tbody tr:not(.summary):hover{
+    cursor: pointer;
+    background-color:whitesmoke !important;
+    color: #000123;
+    transition: ease-in-out .3s;
+}
+
+.table tbody tr{
+    background-color: #000123;
+    color:whitesmoke;
+    transition: ease-in-out .3s;
+}
+
+.table .summary{
+    display: none;
+}
+html body{
+    background-color:#000123;
+}
 a:visited{
     color: lightgrey;
 }

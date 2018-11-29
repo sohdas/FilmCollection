@@ -1,17 +1,41 @@
+{% extends 'base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'collection/style.css' %}">
+{% block body %}
+<div class="container color-white">
+    <div class="title">
+        <p>FILM COLLECTION</p>
+    </div>
+    <div class="shelf_list">
+        {% if shelf_list %}
+        <table class="table body-font color-white">
+            <thead>
+                <th>Shelf Name</th>
+                <th>Number of Movies</th>
+            </thead>
+            <tbody>
+                {% for shelf in shelf_list %}
+                <tr href="{% url 'collection:detail' shelf.id %}">
+                    <td>{{ shelf.shelf_name }}</td>
+                    <td>{{ shelf.shelf_size }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No collections are available.</p>
+        {% endif %}
+    </div>
+</div>
 
-<div class="title">
-    <p>FILM COLLECTION</p>
-</div>
-<div class="shelf_list">
-{% if shelf_list %}
-    <ul>
-    {% for shelf in shelf_list %}
-        <li><a href="{% url 'collection:detail' shelf.id %}">{{ shelf.shelf_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No collections are available.</p>
-{% endif %}
-</div>
+<script>
+    $(document).ready(function () {
+        $('.table tr').click(function () {
+            var link = $(this).attr('href');
+            console.log($(this).attr('href'));
+            if (link) {
+                location.href = link;
+            }
+        });
+    });
+</script>
+{% endblock %}

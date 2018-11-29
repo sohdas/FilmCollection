@@ -1,30 +1,50 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'collection/style.css' %}">
+{% block body %}
+<div class="container color-white">
+    <div class="title">
+        <p> {{ shelf.shelf_name }} </p>
+    </div>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <table class="table body-font color-white">
+        <thead>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year</th>
+        </thead>
+        <tbody>
+            {% for movie in shelf.movie_set.all %}
+            <tr>
+                <td for="movie{{ forloop.counter }}">{{ movie.movie_name }}</td>
+                <td for="movie{{ forloop.counter }}">{{ movie.movie_genre }}</td>
+                <td for="movie{{ forloop.counter }}">{{ movie.release_year }}</td>
+            </tr>
+            <tr class="summary">
+                <td colspan=3>
+                    <p for="movie{{ forloop.counter}}"> &nbsp;&nbsp;&nbsp; {{ movie.movie_summary }}</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="{% url 'collection:add_film' shelf.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="genre" placeholder="Genre">
+        <input type="number" maxlength="4" name="year" placeholder="Year">
+        <input type="text" name="summary" placeholder="Enter a summary">
+        <input type="submit" value="Add Film">
+    </form>
 
-<h1>{{ shelf.shelf_text }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<table>
-<thead>
-    <th>Title</th>
-    <th>Genre</th>
-    <th>Year</th>
-</thead>
-{% for movie in shelf.movie_set.all %}
-<tr>
-    <td for="movie{{ forloop.counter }}">{{ movie.movie_name }}</td>
-    <td for="movie{{ forloop.counter }}">{{ movie.movie_genre }}</td>
-    <td for="movie{{ forloop.counter }}">{{ movie.release_year }}</td>
-</tr>
-{% endfor %}
-</table>
-<form action="{% url 'collection:add_film' shelf.id %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="title" value="Title">
-    <input type="text" name="genre" value="Genre">
-    <input type="number" maxlength="4" name="year" value="2018">
-    <input type="text" name="summary" value="Enter a summary">
-    <input type="submit" value="Add Film">
-</form>
+    <a href="{% url 'collection:index' %}">Back to Index</a>
+</div>
 
-<a href="{% url 'collection:index' %}">Back to Index</a>
+<script>
+    $(document).ready(function () {
+        $('.table tr').click(function () {
+            var s = $(this).next('.summary');
+            s.slideToggle();
+        });
+    });
+</script>
+{% endblock %}
