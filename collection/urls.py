@@ -6,6 +6,7 @@ app_name = 'collection'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:shelf_id>/add_film/', views.add_film, name = 'add_film'),
+    path('<int:shelf_id>/<int:pk>/', views.UpdateView.as_view(), name='update'),
+    path('<int:shelf_id>/<int:movie_id>/edit_film/', views.edit_film, name = 'edit_film'),
 ]

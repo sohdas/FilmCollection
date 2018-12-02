@@ -15,6 +15,9 @@
 
 /*Table Stuff*/
 
+.table tr:not(.summary) td{
+    border:none !important;
+}
 .table tbody tr:not(.summary):hover{
     cursor: pointer;
     background-color:whitesmoke !important;
@@ -28,9 +31,17 @@
     transition: ease-in-out .3s;
 }
 
-.table .summary{
-    display: none;
+.table .summary , .table .summary td {
+    padding: 0;
+    margin: 0;
 }
+.table .summary .hiddenSummary{
+    display: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-style: italic;
+}
+
 html body{
     background-color:#000123;
 }

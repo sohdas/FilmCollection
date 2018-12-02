@@ -13,14 +13,14 @@ class IndexView(generic.ListView):
         """Return 10 shelves in alphabetical order"""
         return Shelf.objects.order_by('shelf_name')[:10]
 
-
 class DetailView(generic.DetailView):
     model = Shelf
     template_name='collection/detail.html'
 
-class ResultsView(generic.DetailView):
-    model = Shelf
-    template_name='collection/results.html'
+class UpdateView(generic.UpdateView):
+    model = Movie
+    template_name='collection/update.html'
+    fields = ['movie_name', 'release_year', 'movie_genre', 'movie_summary']
 
 def add_film(request, shelf_id):
     current_shelf = get_object_or_404(Shelf, id=shelf_id)
@@ -38,4 +38,18 @@ def add_film(request, shelf_id):
 
     current_shelf.save()
 
-    return HttpResponseRedirect(reverse('collection:results', args=(shelf_id,)))
+    return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))
+
+def edit_film(request, shelf_id, movie_id):
+    changed_film = get_object_or_404(Movie, id= movie_id)
+    current_shelf = get_object_or_404(Shelf, id = shelf_id)
+    
+    changed_film.movie_name = request.POST['title']
+    changed_film.movie_genre = request.POST['genre']
+    changed_film.release_year = request.POST['year']
+    changed_film.movie_summary = request.POST['summary']
+
+    changed_film.save()
+    current_shelf.save()
+
+    return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))

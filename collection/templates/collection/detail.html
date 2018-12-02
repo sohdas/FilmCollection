@@ -21,7 +21,10 @@
             </tr>
             <tr class="summary">
                 <td colspan=3>
-                    <p for="movie{{ forloop.counter}}"> &nbsp;&nbsp;&nbsp; {{ movie.movie_summary }}</p>
+                    <div class = "hiddenSummary" for="movie{{ forloop.counter}}"> 
+                        &emsp;&emsp; {{ movie.movie_summary }}
+                        <a href="{% url 'collection:update' shelf.id movie.id %}"> Edit </a>
+                    </div>
                 </td>
             </tr>
             {% endfor %}
@@ -33,7 +36,7 @@
         <input type="text" name="genre" placeholder="Genre">
         <input type="number" maxlength="4" name="year" placeholder="Year">
         <input type="text" name="summary" placeholder="Enter a summary">
-        <input type="submit" value="Add Film">
+        <button type="submit"> Add Film </button>
     </form>
 
     <a href="{% url 'collection:index' %}">Back to Index</a>
@@ -43,6 +46,7 @@
     $(document).ready(function () {
         $('.table tr').click(function () {
             var s = $(this).next('.summary');
+            s = s.children().children('.hiddenSummary');
             s.slideToggle();
         });
     });
