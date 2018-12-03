@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container color-white">
+<div class="container color-navy">
     <div class="title">
         <p> {{ movie.movie_name }} </p>
     </div>
     <form action="{% url 'collection:edit_film' movie.shelf.id movie.id %}" method="post">
             {% csrf_token %}
-            <input type="text" name="title" value="{{movie.movie_name}}">
-            <input type="text" name="genre" value="{{movie.movie_genre}}">
-            <input type="number" maxlength="4" name="year" value="{{movie.release_year}}">
-            <input type="text" name="summary" value="{{movie.movie_summary}}">
-            <button type="submit"> Save Changes </button>
+            <input class="form-control"type="text" name="title" value="{{movie.movie_name}}">
+            <input class="form-control"type="text" name="genre" value="{{movie.movie_genre}}">
+            <input class="form-control"type="number" maxlength="4" name="year" value="{{movie.release_year}}">
+            <input class="form-control"type="text" name="summary" value="{{movie.movie_summary}}">
+            <button class="button-yin" type="submit"> SAVE </button>
     </form>
-    <a href="{% url 'collection:detail' movie.shelf.id %}">Cancel</a>
+    <a class="button-yang" href="{% url 'collection:detail' movie.shelf.id %}">CANCEL</a>
 </div>
 
 <script>

@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container color-white">
+<div class="container color-navy">
     <div class="title">
         <p> {{ shelf.shelf_name }} </p>
     </div>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <table class="table body-font color-white">
+    <table class="table body-font color-navy">
         <thead>
             <th>Title</th>
             <th>Genre</th>
@@ -21,25 +20,33 @@
             </tr>
             <tr class="summary">
                 <td colspan=3>
-                    <div class = "hiddenSummary" for="movie{{ forloop.counter}}"> 
-                        &emsp;&emsp; {{ movie.movie_summary }}
-                        <a href="{% url 'collection:update' shelf.id movie.id %}"> Edit </a>
+                    <div class="hiddenSummary" for="movie{{ forloop.counter}}">
+                         <span class="summary-content">{{ movie.movie_summary }}
+                         </span>
+                        <a class="button-yin" href="{% url 'collection:update' shelf.id movie.id %}"> EDIT </a>
                     </div>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="{% url 'collection:add_film' shelf.id %}" method="post">
+    <form class="row" action="{% url 'collection:add_film' shelf.id %}" method="post">
         {% csrf_token %}
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="genre" placeholder="Genre">
-        <input type="number" maxlength="4" name="year" placeholder="Year">
-        <input type="text" name="summary" placeholder="Enter a summary">
-        <button type="submit"> Add Film </button>
+        <div class="col-sm-5 form-group">
+            <input class="form-control form-spacing" type="text" name="title" placeholder="Title">
+            <input class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
+            <input data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050" name="year"
+                placeholder="Year">
+        </div>
+        <div class="col-sm-5 form-group">
+            <textarea rows="4" class="form-control form-spacing" type="text" name="summary" placeholder="Enter a summary"></textarea>
+        </div>
+        <div class="col-sm-2 form-group">
+            <button class="button-yin form-spacing" type="submit"> ADD FILM </button>
+            <button class="button-yang form-spacing" type="reset"> CLEAR </button>
+            <a class="button-yang form-spacing" href="{% url 'collection:index' %}">BACK TO INDEX</a>
+        </div>
     </form>
-
-    <a href="{% url 'collection:index' %}">Back to Index</a>
 </div>
 
 <script>
@@ -49,6 +56,7 @@
             s = s.children().children('.hiddenSummary');
             s.slideToggle();
         });
+
     });
 </script>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block body %}
-<div class="container color-white">
+<div class="container color-navy">
     <div class="title">
         <p>FILM COLLECTION</p>
     </div>
     <div class="shelf_list">
         {% if shelf_list %}
-        <table class="table body-font color-white">
+        <table class="table body-font color-navy">
             <thead>
                 <th>Shelf Name</th>
                 <th>Number of Movies</th>
@@ -31,7 +31,6 @@
     $(document).ready(function () {
         $('.table tr').click(function () {
             var link = $(this).attr('href');
-            console.log($(this).attr('href'));
             if (link) {
                 location.href = link;
             }
