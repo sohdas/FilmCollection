@@ -5,13 +5,21 @@
     <div class="title">
         <p> {{ movie.movie_name }} </p>
     </div>
-    <form action="{% url 'collection:edit_film' movie.shelf.id movie.id %}" method="post">
-            {% csrf_token %}
-            <input class="form-control"type="text" name="title" value="{{movie.movie_name}}">
-            <input class="form-control"type="text" name="genre" value="{{movie.movie_genre}}">
-            <input class="form-control"type="number" maxlength="4" name="year" value="{{movie.release_year}}">
-            <input class="form-control"type="text" name="summary" value="{{movie.movie_summary}}">
-            <button class="button-yin" type="submit"> SAVE </button>
+    <form class="row" action="{% url 'collection:edit_film' movie.shelf.id movie.id %}" method="post">
+        {% csrf_token %}
+        <div class="col-sm-5 form-group">
+            <input class="form-control form-spacing" type="text" name="title" value="{{movie.movie_name}}">
+            <input class="form-control form-spacing" type="text" name="genre" value="{{movie.movie_genre}}">
+            <input data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050"
+                name="year" value="{{movie.release_year}}">
+        </div>
+        <div class="col-sm-5 form-group">
+            <textarea rows="4" class="form-control form-spacing" type="text" name="summary">{{movie.movie_summary}}</textarea>
+        </div>
+        <div class="col-sm-2 form-group">
+            <button class="button-yin form-spacing" type="submit"> SAVE </button>
+            <button class="button-yang form-spacing" type="reset"> CLEAR </button>
+        </div>
     </form>
     <a class="button-yang" href="{% url 'collection:detail' movie.shelf.id %}">CANCEL</a>
 </div>
