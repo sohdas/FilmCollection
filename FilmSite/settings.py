@@ -25,7 +25,7 @@ SECRET_KEY = '9o&uaer+b+0ki!pf-$fg-dki38bpdgwou1lq82&rc4fnd9u-bi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sohdas.pythonanywhere.com']
 
 
 # Application definition
@@ -119,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = '/home/sohdas/FilmCollection/collection/static/tempstatic'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
