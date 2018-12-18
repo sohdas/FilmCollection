@@ -25,7 +25,7 @@ SECRET_KEY = '9o&uaer+b+0ki!pf-$fg-dki38bpdgwou1lq82&rc4fnd9u-bi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sohdas.pythonanywhere.com']
+ALLOWED_HOSTS = ['sohdas.pythonanywhere.com', 'localhost']
 
 
 # Application definition
