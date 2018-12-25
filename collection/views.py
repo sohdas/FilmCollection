@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
-
+from django.contrib.auth.models import User, Permission
+from django.contrib.auth import authenticate
 from .models import Shelf, Movie
 
 class IndexView(generic.ListView):
