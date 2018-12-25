@@ -125,4 +125,7 @@ STATICFILES_DIRS = [
 ]
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
+
 LOGIN_REDIRECT_URL = '/'
+
+# HTTPS / SSL stuff (figure this out l8r)

@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container color-navy">
     <div class="title">
-        <p>FILM COLLECTION</p>
+        <p> {{user.get_username.upper}}'S FILM COLLECTION</p>
     </div>
     <div class="shelf_list">
         {% if shelf_list %}
