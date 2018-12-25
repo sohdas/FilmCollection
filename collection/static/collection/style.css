@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("https://fonts.googleapis.com/css?family=Montserrat");
+  
+}
+@font-face {
+    font-family: "Lato";
+    src: url("https://fonts.googleapis.com/css?family=Lato");
+}
 .color-whitesmoke {
     color: whitesmoke;
 }
