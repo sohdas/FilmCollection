@@ -118,9 +118,26 @@ a {
     transition: ease-in-out .3s;
 }
 
+.button-login{
+    width:230px;
+}
+
 /*Forms*/
 
 .form-spacing {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.form-center{
+    display:inline-block;
+    text-align:center;
+}
+
+/*Containers*/
+
+.container-center{
+    margin: auto;
+    width: 100%;
+    text-align: center;
 }

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
+{% if user.is_authenticated %}
 <div class="container color-navy">
     <div class="title">
         <p>FILM COLLECTION</p>

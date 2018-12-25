@@ -4,12 +4,18 @@ from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Shelf, Movie
 
 class IndexView(generic.ListView):
     template_name='collection/index.html'
     context_object_name='shelf_list'
     
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexView, self).dispatch(*args, **kwargs)
+
     def get_queryset(self):
         """Return 10 shelves in alphabetical order"""
         return Shelf.objects.order_by('shelf_name')[:10]
