@@ -6,14 +6,14 @@
         <p> {{user.get_username.upper}}'S FILM COLLECTION</p>
     </div>
     <div class="shelf_list">
-        {% if shelf_list %}
+        {% if user.shelf_set.count > 0 %}
         <table class="table body-font color-navy">
             <thead>
                 <th>Shelf Name</th>
                 <th>Number of Movies</th>
             </thead>
             <tbody>
-                {% for shelf in shelf_list %}
+                {% for shelf in user.shelf_set.all %}
                 <tr href="{% url 'collection:detail' shelf.id %}">
                     <td>{{ shelf.shelf_name }}</td>
                     <td>{{ shelf.shelf_size }}</td>
@@ -22,7 +22,7 @@
             </tbody>
         </table>
         {% else %}
-        <p>No collections are available.</p>
+        <p>You haven't made a shelf yet.</p>
         {% endif %}
     </div>
 </div>
