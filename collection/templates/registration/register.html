@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body %}
+<hr>
+
+<div class="container container-center form-spacing">
+    <h1>Register</h1>
+    
+    {% if form.errors %}
+    <p>Invalid input. Please try again.</p>
+    {% endif %}
+
+    <form class="form-center" method="post" action="{% url 'collection:create_user' %}">
+        {% csrf_token %}
+        <table>
+          
+            <tr>
+                <input class="form-control form-spacing" type="email" name="email" placeholder="Email">
+            </tr>
+        
+            <tr>
+                    <input class="form-control form-spacing" type="text" name="username" placeholder="Username">
+            </tr>
+
+            <tr>
+                    <input class="form-control form-spacing" type="password" name="password" placeholder="Password">
+            </tr>
+        </table>
+            <button class="button-login button-yin form-spacing form-center" type="submit"> SIGN UP </button>
+    </form>
+</div>
+{% endblock %}

@@ -4,7 +4,9 @@
 <hr>
 
 <div class="container container-center form-spacing">
-
+    <div class="title">
+        <p> FILM COLLECTION </p>
+    </div>
     {% if form.errors %}
     <p>The username and/or password was incorrect. Please try again.</p>
     {% endif %}
@@ -35,5 +37,6 @@
 
     {# Assumes you setup the password_reset view in your URLconf #}
     <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+    <p><a href="{% url 'collection:register' %}">Sign up</a></p>
 </div>
 {% endblock %}

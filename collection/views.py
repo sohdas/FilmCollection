@@ -1,10 +1,11 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.models import User, Permission
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.decorators import method_decorator
 from .models import Shelf, Movie
 
@@ -28,6 +29,21 @@ class UpdateView(generic.UpdateView):
     model = Movie
     template_name='collection/update.html'
     fields = ['movie_name', 'release_year', 'movie_genre', 'movie_summary']
+
+class RegisterView(generic.TemplateView):
+    template_name = 'registration/register.html'
+
+def create_user(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    email = request.POST.get('email')
+
+    User.objects.create_user(username,email ,password)
+
+    user = authenticate(username = username, password = password)
+    login(request, user)
+
+    return HttpResponseRedirect(reverse('collection:index'))
 
 def add_film(request, shelf_id):
     current_shelf = get_object_or_404(Shelf, id=shelf_id)
