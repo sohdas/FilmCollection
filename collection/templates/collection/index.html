@@ -24,6 +24,15 @@
         {% else %}
         <p>You haven't made a shelf yet.</p>
         {% endif %}
+        <form class="row" action="{% url 'collection:add_shelf' user.id %}" method="post">
+            {% csrf_token %}
+            <div class="col-sm-5 form-group">
+                <input class="form-control form-spacing" type="text" name="name" placeholder="Shelf Name">
+            </div>
+            <div class="col-sm-2 form-group">
+                <button class="button-yin form-spacing" type="submit"> ADD SHELF </button>
+            </div>
+        </form>
     </div>
 </div>
 

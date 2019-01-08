@@ -45,6 +45,17 @@ def create_user(request):
 
     return HttpResponseRedirect(reverse('collection:index'))
 
+def add_shelf(request, user_id):
+    current_user = get_object_or_404(User, id=user_id)
+    new_shelf = Shelf()
+
+    new_shelf.user = current_user
+    new_shelf.shelf_name = request.POST['name']
+
+    new_shelf.save()
+
+    return HttpResponseRedirect(reverse('collection:index'))
+
 def add_film(request, shelf_id):
     current_shelf = get_object_or_404(Shelf, id=shelf_id)
     new_film = Movie()
