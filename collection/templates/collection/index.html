@@ -11,12 +11,14 @@
             <thead>
                 <th>Shelf Name</th>
                 <th>Number of Movies</th>
+                <th></th>
             </thead>
             <tbody>
                 {% for shelf in user.shelf_set.all %}
                 <tr href="{% url 'collection:detail' shelf.id %}">
                     <td>{{ shelf.shelf_name }}</td>
-                    <td>{{ shelf.shelf_size }}</td>
+                    <td>{{ shelf.shelf_size }} </td>
+                    <td ><a href="{% url 'collection:delete_shelf' shelf.id %}"class ="button-trash"><span class="fa fa-trash"></span></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

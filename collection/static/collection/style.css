@@ -74,6 +74,17 @@ a {
 
 /*Buttons*/
 
+.button-trash{
+    z-index: 100;
+    border: none;
+    background-color: transparent;
+    color:black;
+    cursor:pointer;
+}
+.button-trash:hover > span{
+    color: red;
+    cursor: pointer;
+}
 .button-yin {
     font-style: normal;
     display: block;

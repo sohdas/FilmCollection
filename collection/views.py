@@ -56,6 +56,13 @@ def add_shelf(request, user_id):
 
     return HttpResponseRedirect(reverse('collection:index'))
 
+def delete_shelf(request, shelf_id):
+    to_delete = get_object_or_404(Shelf, id=shelf_id)
+
+    to_delete.delete()
+
+    return HttpResponseRedirect(reverse('collection:index'))
+
 def add_film(request, shelf_id):
     current_shelf = get_object_or_404(Shelf, id=shelf_id)
     new_film = Movie()
