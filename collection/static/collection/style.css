@@ -85,6 +85,21 @@ a {
     color: red;
     cursor: pointer;
 }
+
+.button-edit{
+    z-index: 100;
+    border: none;
+    background-color: transparent;
+    color:black;
+    cursor:pointer;
+    transition: ease-in-out .3s;
+
+}
+.button-edit:hover > span{
+    color: white;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+}
 .button-yin {
     font-style: normal;
     display: block;

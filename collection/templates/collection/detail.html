@@ -10,6 +10,8 @@
             <th>Title</th>
             <th>Genre</th>
             <th>Year</th>
+            <th></th>
+            <th></th>
         </thead>
         <tbody>
             {% for movie in shelf.movie_set.all %}
@@ -17,13 +19,14 @@
                 <td for="movie{{ forloop.counter }}">{{ movie.movie_name }}</td>
                 <td for="movie{{ forloop.counter }}">{{ movie.movie_genre }}</td>
                 <td for="movie{{ forloop.counter }}">{{ movie.release_year }}</td>
+                <td title="Edit"><a href="{% url 'collection:update' shelf.id movie.id %}"class ="button-edit"><span class="fa fa-edit"></span></a></td>
+                <td title="Delete"><a href="{% url 'collection:delete_film' shelf.id movie.id%}"class ="button-trash"><span class="fa fa-trash"></span></a></td>
             </tr>
             <tr class="summary">
-                <td colspan=3>
+                <td colspan=5>
                     <div class="hiddenSummary" for="movie{{ forloop.counter}}">
                          <span class="summary-content">{{ movie.movie_summary }}
                          </span>
-                        <a class="button-yin" href="{% url 'collection:update' shelf.id movie.id %}"> EDIT </a>
                     </div>
                 </td>
             </tr>

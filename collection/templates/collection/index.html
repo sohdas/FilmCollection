@@ -18,7 +18,7 @@
                 <tr href="{% url 'collection:detail' shelf.id %}">
                     <td>{{ shelf.shelf_name }}</td>
                     <td>{{ shelf.shelf_size }} </td>
-                    <td ><a href="{% url 'collection:delete_shelf' shelf.id %}"class ="button-trash"><span class="fa fa-trash"></span></a></td>
+                    <td title="Delete" ><a href="{% url 'collection:delete_shelf' shelf.id %}"class ="button-trash"><span class="fa fa-trash"></span></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

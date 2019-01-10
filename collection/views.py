@@ -81,6 +81,15 @@ def add_film(request, shelf_id):
 
     return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))
 
+def delete_film(request, shelf_id, movie_id):
+    to_delete = get_object_or_404(Movie, id=movie_id)
+    current_shelf = get_object_or_404(Shelf, id=shelf_id)
+
+    to_delete.delete()
+    current_shelf.save()
+
+    return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))
+
 def edit_film(request, shelf_id, movie_id):
     changed_film = get_object_or_404(Movie, id= movie_id)
     current_shelf = get_object_or_404(Shelf, id = shelf_id)
