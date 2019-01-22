@@ -8,9 +8,9 @@
     <form class="row" action="{% url 'collection:edit_film' movie.shelf.id movie.id %}" method="post">
         {% csrf_token %}
         <div class="col-sm-5 form-group">
-            <input class="form-control form-spacing" type="text" name="title" value="{{movie.movie_name}}">
-            <input class="form-control form-spacing" type="text" name="genre" value="{{movie.movie_genre}}">
-            <input data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050"
+            <input required class="form-control form-spacing" type="text" name="title" value="{{movie.movie_name}}">
+            <input required class="form-control form-spacing" type="text" name="genre" value="{{movie.movie_genre}}">
+            <input required data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050"
                 name="year" value="{{movie.release_year}}">
         </div>
         <div class="col-sm-5 form-group">

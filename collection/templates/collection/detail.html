@@ -27,15 +27,6 @@
                     <div class="hiddenSummary" for="movie{{ forloop.counter}}">
                          <span class="summary-content">{{ movie.movie_summary }}
                          </span>
-                         <?php
-                         $upcoming = simplexml_load_file("http://api.traileraddict.com/?film=mulholland-drive");
-                         
-                         foreach($upcoming->trailer as $x => $updates)
-                         {
-                                echo $updates->embed;
-                             
-                             }
-                         ?>
                     </div>
                 </td>
             </tr>
@@ -45,9 +36,9 @@
     <form class="row" action="{% url 'collection:add_film' shelf.id %}" method="post">
         {% csrf_token %}
         <div class="col-sm-5 form-group">
-            <input class="form-control form-spacing" type="text" name="title" placeholder="Title">
-            <input class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
-            <input data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050" name="year"
+            <input required class="form-control form-spacing" type="text" name="title" placeholder="Title">
+            <input required class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
+            <input required data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050" name="year"
                 placeholder="Year">
         </div>
         <div class="col-sm-5 form-group">
