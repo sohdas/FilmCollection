@@ -86,6 +86,8 @@ def delete_film(request, shelf_id, movie_id):
     current_shelf = get_object_or_404(Shelf, id=shelf_id)
 
     to_delete.delete()
+
+    current_shelf.shelf_size -= 1
     current_shelf.save()
 
     return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))

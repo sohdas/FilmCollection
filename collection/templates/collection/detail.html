@@ -27,6 +27,15 @@
                     <div class="hiddenSummary" for="movie{{ forloop.counter}}">
                          <span class="summary-content">{{ movie.movie_summary }}
                          </span>
+                         <?php
+                         $upcoming = simplexml_load_file("http://api.traileraddict.com/?film=mulholland-drive");
+                         
+                         foreach($upcoming->trailer as $x => $updates)
+                         {
+                                echo $updates->embed;
+                             
+                             }
+                         ?>
                     </div>
                 </td>
             </tr>
