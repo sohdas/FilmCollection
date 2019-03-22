@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
 {% block body %}
 <div class="container color-navy">
     <div class="title">
@@ -7,13 +8,18 @@
     </div>
     <form class="row" action="{% url 'collection:edit_film' movie.shelf.id movie.id %}" method="post">
         {% csrf_token %}
-        <div class="col-sm-5 form-group">
+        <div class="col-sm-4 form-group">
+            {% if movie.movie_poster %}
+                <img src = "{{movie.movie_poster.url}}" name = "poster" id ="movie-poster"></img>
+            {% else %}
+                <img src = "{% static 'imgs/placeholder_poster.png' %}" name = "poster" id ="movie-poster"></img>
+            {% endif %}
+        </div>
+        <div class="col-sm-6 form-group">
             <input required class="form-control form-spacing" type="text" name="title" value="{{movie.movie_name}}">
             <input required class="form-control form-spacing" type="text" name="genre" value="{{movie.movie_genre}}">
             <input required data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050"
                 name="year" value="{{movie.release_year}}">
-        </div>
-        <div class="col-sm-5 form-group">
             <textarea rows="4" class="form-control form-spacing" type="text" name="summary">{{movie.movie_summary}}</textarea>
         </div>
         <div class="col-sm-2 form-group">

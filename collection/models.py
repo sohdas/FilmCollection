@@ -12,8 +12,9 @@ class Movie(models.Model):
     shelf = models.ForeignKey(Shelf, on_delete = models.CASCADE)
     movie_name = models.CharField(max_length = 100)
     movie_genre = models.CharField(max_length = 100)
-    release_year = models.PositiveIntegerField(max_length = 4, default = 2018)
+    release_year = models.PositiveIntegerField(default = 2018)
     movie_summary = models.TextField()
+    movie_poster = models.ImageField(default = "\collection\static\collection\placeholder_poster.png", upload_to = "gallery")
     def __str__(self):
         return self.movie_name
     

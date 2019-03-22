@@ -69,7 +69,9 @@ a {
 
 .summary-content {
     opacity: .55;
-    padding-left: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-bottom: 0px;
 }
 
 /*Buttons*/
@@ -148,6 +150,13 @@ a {
     width:230px;
 }
 
+/*Images*/
+
+#movie-poster {
+    width: 50%;
+    display: block;
+    margin: auto;
+}
 /*Forms*/
 
 .form-spacing {

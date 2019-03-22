@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block body %}
 <div class="container color-navy">
     <div class="title">
@@ -25,24 +25,30 @@
             <tr class="summary">
                 <td colspan=5>
                     <div class="hiddenSummary" for="movie{{ forloop.counter}}">
-                         <span class="summary-content">{{ movie.movie_summary }}
-                         </span>
+                         <p class="summary-content">{{ movie.movie_summary }}
+                         </p>
                     </div>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <div class ="container">
+        <input id = "search-text" class="form-control form-spacing" type="text" placeholder="Search">
+    </div>
+    
     <form class="row" action="{% url 'collection:add_film' shelf.id %}" method="post">
         {% csrf_token %}
-        <div class="col-sm-5 form-group">
-            <input required class="form-control form-spacing" type="text" name="title" placeholder="Title">
-            <input required class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
-            <input required data-placeholder="" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050" name="year"
-                placeholder="Year">
+        <div class="col-sm-4 form-group">
+            <img src = "{% static 'imgs/placeholder_poster.png' %}" name = "poster" id ="movie-poster"></img>
         </div>
-        <div class="col-sm-5 form-group">
-            <textarea rows="4" class="form-control form-spacing" type="text" name="summary" placeholder="Enter a summary"></textarea>
+        <div class="col-sm-6 form-group">
+            <input required id = "form-title" class="form-control form-spacing" type="text" name="title" placeholder="Title">
+            <input required id = "form-genre" class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
+            <input required data-placeholder="" id = "form-year" data-mask="9999" class="form-control form-spacing" type="text" min="0000" max="2050" name="year"
+                placeholder="Year">
+            <textarea rows="4" id = "form-plot" class="form-control form-spacing" type="text" name="summary" placeholder="Enter a summary"></textarea>
         </div>
         <div class="col-sm-2 form-group">
             <button class="button-yin form-spacing" type="submit"> ADD FILM </button>
@@ -59,6 +65,23 @@
             s = s.children().children('.hiddenSummary');
             s.slideToggle();
         });
+        $('#search-text').keyup(function () {
+            var title = $('#search-text').val().replace(' ','_');
+            var url = 'http://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f';
+            var default_img = $('#movie-poster').attr('src');
+            $.getJSON(url, function(data){
+                if (data[Response] != 'False'){
+                    $('#form-title').val(data["Title"]);
+                    $('#form-genre').val(data["Genre"]);
+                    $('#form-year').val(data["Year"]);
+                    $('#form-plot').text(data["Plot"]);
+                    if (data["Poster"] != "N/A"){
+                        $('#movie-poster').attr('src',data["Poster"]);
+                    }
+                }
+            });            
+        });
     });
+
 </script>
 {% endblock %}

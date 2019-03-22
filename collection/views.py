@@ -7,7 +7,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.decorators import method_decorator
+from django.core.files import File
+from PIL import Image
 from .models import Shelf, Movie
+import requests
 
 class IndexView(generic.ListView):
     template_name='collection/index.html'
@@ -71,6 +74,7 @@ def add_film(request, shelf_id):
     new_film.movie_genre = request.POST['genre']
     new_film.release_year = request.POST['year']
     new_film.movie_summary = request.POST['summary']
+    new_film.movie_poster = request.POST.get('poster')
     new_film.shelf = current_shelf
 
     new_film.save()
