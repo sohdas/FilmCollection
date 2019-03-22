@@ -67,7 +67,7 @@
         });
         $('#search-text').keyup(function () {
             var title = $('#search-text').val().replace(' ','_');
-            var url = 'http://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f';
+            var url = 'https://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f';
             var default_img = $('#movie-poster').attr('src');
             $.getJSON(url, function(data){
                 if (data[Response] != 'False'){
