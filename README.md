@@ -1,4 +1,6 @@
 # FilmCollection
-A website to manage personal movie lists using Django with a sqlite DB.
+
+Create and manage personal movie lists.
+Uses Django w/ sqlite
 
 Live site: <http://sohdas.pythonanywhere.com>
