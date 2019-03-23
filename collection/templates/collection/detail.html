@@ -41,8 +41,9 @@
     <form class="row" action="{% url 'collection:add_film' shelf.id %}" method="post">
         {% csrf_token %}
         <div class="col-sm-4 form-group">
-            <img src = "{% static 'imgs/placeholder_poster.png' %}" name = "poster" id ="movie-poster"></img>
+            <img src = "{% static 'imgs/placeholder_poster.png' %}" id ="movie-poster"></img>
         </div>
+        <input id = "form-poster-url" hidden name ="poster">
         <div class="col-sm-6 form-group">
             <input required id = "form-title" class="form-control form-spacing" type="text" name="title" placeholder="Title">
             <input required id = "form-genre" class="form-control form-spacing" type="text" name="genre" placeholder="Genre">
@@ -52,7 +53,7 @@
         </div>
         <div class="col-sm-2 form-group">
             <button class="button-yin form-spacing" type="submit"> ADD FILM </button>
-            <button class="button-yang form-spacing" type="reset"> CLEAR </button>
+            <button id ="reset-button" class="button-yang form-spacing" type="reset"> CLEAR </button>
             <a class="button-yang form-spacing" href="{% url 'collection:index' %}">BACK TO INDEX</a>
         </div>
     </form>
@@ -60,15 +61,21 @@
 
 <script>
     $(document).ready(function () {
+        var default_img = $('#movie-poster').attr('src');
         $('.table tr').click(function () {
             var s = $(this).next('.summary');
             s = s.children().children('.hiddenSummary');
             s.slideToggle();
         });
+        $('#reset-button').click(function(){
+            $('#form-plot').text("");
+            $('#movie-poster').attr('src',default_img);
+
+            $('#search-text').val("");
+        });
         $('#search-text').keyup(function () {
             var title = $('#search-text').val().replace(' ','_');
-            var url = 'https://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f';
-            var default_img = $('#movie-poster').attr('src');
+            var url = 'https://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f'; // plot parameter can be added/removed for more/less detail
             $.getJSON(url, function(data){
                 if (data[Response] != 'False'){
                     $('#form-title').val(data["Title"]);
@@ -76,6 +83,7 @@
                     $('#form-year').val(data["Year"]);
                     $('#form-plot').text(data["Plot"]);
                     if (data["Poster"] != "N/A"){
+                        $('#form-poster-url').val(data["Poster"]);
                         $('#movie-poster').attr('src',data["Poster"]);
                     }
                 }

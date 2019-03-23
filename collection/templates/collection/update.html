@@ -10,7 +10,7 @@
         {% csrf_token %}
         <div class="col-sm-4 form-group">
             {% if movie.movie_poster %}
-                <img src = "{{movie.movie_poster.url}}" name = "poster" id ="movie-poster"></img>
+                <img src = "{{movie.movie_poster}}" name = "poster" id ="movie-poster"></img>
             {% else %}
                 <img src = "{% static 'imgs/placeholder_poster.png' %}" name = "poster" id ="movie-poster"></img>
             {% endif %}

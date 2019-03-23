@@ -74,13 +74,15 @@ def add_film(request, shelf_id):
     new_film.movie_genre = request.POST['genre']
     new_film.release_year = request.POST['year']
     new_film.movie_summary = request.POST['summary']
-    new_film.movie_poster = request.POST.get('poster')
+    new_film.movie_poster = request.POST['poster']
     new_film.shelf = current_shelf
+
+    if len(new_film.release_year) > 4:
+        new_film.release_year = int(str(new_film.release_year)[0:4])
 
     new_film.save()
 
     current_shelf.shelf_size += 1
-
     current_shelf.save()
 
     return HttpResponseRedirect(reverse('collection:detail', args=(shelf_id,)))

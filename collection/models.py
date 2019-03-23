@@ -14,7 +14,7 @@ class Movie(models.Model):
     movie_genre = models.CharField(max_length = 100)
     release_year = models.PositiveIntegerField(default = 2018)
     movie_summary = models.TextField()
-    movie_poster = models.ImageField(default = "\collection\static\collection\placeholder_poster.png", upload_to = "gallery")
+    movie_poster = models.TextField(null = True)
     def __str__(self):
         return self.movie_name
     
