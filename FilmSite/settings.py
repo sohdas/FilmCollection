@@ -130,4 +130,9 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '/'
 
+# Email stuff
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 8000
+
 # HTTPS / SSL stuff (figure this out l8r)

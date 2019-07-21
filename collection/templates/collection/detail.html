@@ -73,7 +73,11 @@
 
             $('#search-text').val("");
         });
-        $('#search-text').keyup(function () {
+        $('#search-text').keyup(delay(function () {
+            if ($('#search-text').val().trim() == ''){
+                $('#reset-button').click();
+                return;
+            }
             var title = $('#search-text').val().replace(' ','_');
             var url = 'https://www.omdbapi.com/?t='+title+'&apikey=db0e2d8f'; // plot parameter can be added/removed for more/less detail
             $.getJSON(url, function(data){
@@ -88,8 +92,15 @@
                     }
                 }
             });            
-        });
+        }, 500));
     });
 
+    function delay(fn, ms) {
+        let timer = 0;
+        return function(...args) {
+            clearTimeout(timer);
+            timer = setTimeout(fn.bind(this, ...args), ms || 0);
+        };
+    }
 </script>
 {% endblock %}
