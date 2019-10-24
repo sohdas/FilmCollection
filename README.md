@@ -2,7 +2,7 @@
 
 Create and manage personal movie lists.
 
-Stack:
+Technologies:
 - Django
 - sqlite
 - HTML/CSS/JS
