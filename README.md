@@ -7,5 +7,3 @@ Technologies:
 - sqlite
 - HTML/CSS/JS
 - jQuery
-
-Live site (Work in progress) : <http://sohdas.pythonanywhere.com>
